@@ -14,10 +14,10 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 
 * Check out the script run_analysis.R from the repo.
 * Download the following zip file that contain the raw data.
-** https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+  * https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 * Unzip the file into a certain directory using winzip or 7zip or unzip command.
 * Put the downloaded script in the same directory file at the same level of README file.
 * Open the RStudio and execute do the following two steps:
-** setwd( your directory that have script)
-** open the script run_analysis.R and execute it.
+  * setwd( your directory that have script)
+  * open the script run_analysis.R and execute it.
 
