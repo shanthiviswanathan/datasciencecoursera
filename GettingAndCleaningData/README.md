@@ -19,5 +19,8 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 * Put the downloaded script in the same directory file at the same level of README file.
 * Open the RStudio and execute do the following two steps:
   * setwd( your directory that have script)
-  * open the script run_analysis.R and execute it.
+  * open the script run_analysis.R and execute it by clicking on Shift+Control+Enter.
+* 2 files will be created in the directory
+  * tidyData.txt => has the cleaned data with all the mean, std related columns
+  * tidyAverage.txt => has the average of each activity for each subject.
 
