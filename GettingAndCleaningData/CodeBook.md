@@ -19,7 +19,22 @@ For each record in the dataset it is provided:
 * Its activity label. 
 * An identifier of the subject who carried out the experiment.
 
-### Project Details:
+### Data Transformation Steps:
+* Read the activities from the file activity_labels.txt into the data frane "activities" - 6 activities
+* Read the features from the file features.txt into the data frame "features" - 561 features
+* The following files are read from the "test" directory into 3 different data frames
+  * subject_test.txt
+  * X_test.txt
+  * Y_test.txt
+* Assign labels as "acivitiies" for the levels in Y_test.
+* Create "testData" data frame by adding Activities, Subject and x_test columns.
+* The following files are read from the "train" directory into 3 different data frames
+  * subject_train.txt
+  * X_train.txt
+  * Y_train.txt
+* Assign labels as "acivitiies" for the levels in Y_train.
+* Create "trainData" data frame by adding Activities, Subject and x_test columns.
+* 
 Only mean and standard deviation measures are used to get the average across the Subjects and Activity Levels. These two attributes are factors:
 
   * Subjects: ( 30 Subject )
