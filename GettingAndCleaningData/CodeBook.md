@@ -42,6 +42,7 @@ The run_analysis.R script performs the following steps:
   * Writes the cleansed data into a file
   * Melts the cleansed data on Activity and Subject
   * Aggregates using dcast to arrive at the mean for each activity and subject.
+  * Creates the tidyAvgData.txt file with the above averages.
 
 ### Analysis Variables
 
