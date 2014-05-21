@@ -35,11 +35,13 @@ The run_analysis.R script performs the following steps:
     * Y_train.txt
   * Assigns labels as "acivitiies" for the levels in Y_train.
   * Creates "trainData" data frame by adding Activities, Subject and x_test columns.
-  *  
-Only mean and standard deviation measures are used to get the average across the Subjects and Activity Levels. These two attributes are factors:
-
-  * Subjects: ( 30 Subject )
-  * Activity Labels: ( 6 Activites )
+  * Combines testData and trainData using "rbind"
+  * Assigns column headings as Activities, Subject and for the remaining from the "features". 
+  * Creates a character vector of all columns that contain the words mean and std.
+  * Creates the cleansed data frame by taking only the Activity, Subject and the columns above
+  * Writes the cleansed data into a file
+  * Melts the cleansed data on Activity and Subject
+  * Aggregates using dcast to arrive at the mean for each activity and subject.
 
 ### Analysis Variables
 
