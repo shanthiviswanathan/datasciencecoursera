@@ -1,11 +1,14 @@
-# Data should be in the same location as working dir and this script.
+# Make sure the data files and the R scripts are in the same directory
+# Set R working directory to the location of the script and data files
 #
 
-## Loading Data--This first line will likely take a few seconds.
+library("ggplot2")
+
+## Loading Data--This may take a few seconds.
 NEI <- readRDS("summarySCC_PM25.rds")
 SCC <- readRDS("Source_Classification_Code.rds")
 
-# Extract Data & Prepare
+# Subset Vehicles Data 
 cars <- as.character(SCC[grepl("Vehicles", SCC$EI.Sector),1])
 MDCars <- subset(NEI, (SCC %in% cars))
 MDCars <- subset(MDCars, fips == "24510")
