@@ -1,0 +1,43 @@
+What gives better mileage? Automatic or Manual transmission
+========================================================
+
+# Executive summary
+    
+In this report, we examine the dataset from 1974 Motor Trend US magazine to determine the effect of transmission type on miles per gallon (mpg). We conducted a t-test for the difference between mean mpg of automatic and manual transmission cars. At 95% confidence interval, it is observed that there is a difference in mean of about 7 miles more for the manual transmitted cars. We then quantified the difference in mpg between automatic and manula transmissions using a liner regression model. This model shows that a manual transmission increase the expected mpg by about 2.9 miles when all the other factors are kept constant.
+
+## Cleaning data
+
+Load and look at data
+
+```{r}
+data(mtcars)
+str(mtcars)
+```
+
+Convert "cyl", "vs", "am", gear", "carb" variables into factors.
+
+```{r}
+mtcars$cyl <- factor(mtcars$cyl)
+mtcars$vs <- factor(mtcars$vs)
+mtcars$am <- factor(mtcars$am)
+mtcars$gear <- factor(mtcars$gear)
+mtcars$carb <- factor(mtcars$carb)
+```
+
+Add readable levels to variable "am".
+
+```{r}
+levels(mtcars$am) <- c("Auto", "Manual")
+```
+
+
+```{r}
+summary(cars)
+```
+
+You can also embed plots, for example:
+
+```{r fig.width=7, fig.height=6}
+plot(cars)
+```
+

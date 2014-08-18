@@ -1,0 +1,21 @@
+---
+title: "ShinyProject"
+author: "Shanthi Viswanathan"
+date: "August 16, 2014"
+output: html_document
+---
+
+This ShinyProject application was developed as part of the Coursera Data Science Specialization course on Data Products. We use the Boston Housing data that contains the median values of homes in the Boston neighborhood based on various parameters. This application shows how the ** Central Limit Theorem ** works.
+
+## How to use the application
+
+* To look at the histogram click on the <b>"Plot"</b> tab.
+* Then select a column for which histogram should be drawn
+* Next, use the first slider to pick the sample size
+* Next, use slider to pick the number of samples.
+
+As the number of samples increases, the distribution of means comes closer to the normal distribution.
+
+* To look at the dataset, click on the <b>"DataSet"</b> tab.
+* The Table tab displays the entire data set
+* The About tab gives instructions on how to use the application.

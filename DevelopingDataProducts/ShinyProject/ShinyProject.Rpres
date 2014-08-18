@@ -1,0 +1,38 @@
+Shiny Project - Central Limit Theorem
+========================================================
+author: Shanthi Viswanathan
+date: 15 Aug 2014
+
+Introduction
+========================================================
+
+This shiny application has 3 tabs.
+
+- Plot
+- DataSet
+- About
+
+DataSet Tab
+========================================================
+
+DataSet tab displays the entire data set. Below is the summary of the housing data.
+
+```{r}
+housing <- read.csv("data/BostonHousing.csv")
+summary(housing)
+```
+
+Plot Tab
+========================================================
+
+Plot tab is the main tab of this application. By increasing the sample size, the user can see how the distribution of the sample means comes closer to normal distribution.
+
+A sample histogram for the MEDV (median value of a home in $000):
+```{r, echo=FALSE}
+hist(housing$MEDV)
+```
+
+About Tab
+========================================================
+
+About tab describes the application and instructs the users on how to use this application.

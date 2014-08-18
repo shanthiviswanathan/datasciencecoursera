@@ -1,0 +1,120 @@
+---
+output: pdf_document
+---
+What gives better mileage? Automatic or Manual transmission
+========================================================
+
+# Executive summary
+    
+In this report, we examine the dataset from 1974 Motor Trend US magazine to determine the effect of transmission type on miles per gallon (mpg). Manual tranmission type gives higher mpg as can be clearly seen in the boxplot shown in Figure 1. We conducted a t-test for the difference between mean mpg of getautomatic and manual transmission cars. At 95% confidence interval, it is observed that there is a difference in mean of about 7 miles more for the manual transmitted cars.
+
+We then quantified the difference in mpg between automatic and manual transmissions using a liner regression model. This model shows that a manual transmission increases the expected mpg by about 2.3 miles when all the other factors are kept constant. It is alsoe clear that hp and wt has a bigger impact on mpg than the transmission type.
+
+## Cleaning data
+
+Load and look at data
+
+```{r}
+data(mtcars)
+str(mtcars)
+```
+
+Convert "cyl", "vs", "am", gear", "carb" variables into factors.
+
+```{r}
+mtcars$cyl <- factor(mtcars$cyl)
+mtcars$vs <- factor(mtcars$vs)
+mtcars$am <- factor(mtcars$am)
+mtcars$gear <- factor(mtcars$gear)
+mtcars$carb <- factor(mtcars$carb)
+```
+
+Add readable levels to variable "am".
+
+```{r}
+levels(mtcars$am) <- c("Auto", "Manual")
+```
+
+
+```{r}
+str(mtcars)
+```
+
+## Data Analysis
+
+We start with a simple boxplot to see the effect of transmission type on mpg (Refer Figure 1 in appendix). 
+
+This box plot indicates that mpg is higher for manual transmission.We verify this by doing a t-test for the difference mean mpg by transmission type. 
+
+```{r tStat}
+t.test(mtcars$mpg~mtcars$am,paired=FALSE)
+```
+
+At 95% confidence interval, we see t statistic as -3.767 with a p-value of .0014 which indicates there is a statistically significant difference between the respective mean values for mpg.
+
+We now plot the relationships between all the variables taken in pairs (Refer Figure 2 in the appendix)
+
+The pairs graph indicates variables like disp, hp, drat, wt and qsec are highly related. 
+
+Let us first create a model with just am variable.
+
+``` {r mpgVsAM}
+fitam <- lm(mpg~am,mtcars)
+summary(fitam)
+```
+
+This **model coefficient** indicates that there is a increase in 7.24 in mpg because of transmission type. The above model is not good as it explains only 34% of the variation in mpg. This model also has a high residual error.
+
+We now create a model considering all the variables.
+
+``` {r allvars}
+fitall <- lm(mpg~.,mtcars)
+summary(fitall)
+```
+This model indicates that only hp and wt are somewhat significant. However, since the question to be addressed involves am, we create another model with hp, wt and am.
+
+``` {r mpgVsHpWtAM}
+fit <- lm(mpg~am+hp+wt,mtcars)
+summary(fit)
+```
+
+From the **model coefficients**, it is clear that mpg will go up by 2.1 because of transmission type when all other independent variables hp, wt remain constant. The adjusted r-squared is .823 and hence we conclude that more than 82% of the variation in mpg is explained by this model. 
+
+In the above model, am is not significant. However, in the boxplot we saw in Figure 1, manual transmission clearly has higher mpg. To resolve this apparent contradiction, we draw 2 more box plots to see how hp and wt are related to transmission type. Refer to Figure 3 for these.
+
+We will now draw the **residual plots** for the chosen model. Refer Figure 4 for this. 
+
+The **residual vs fitted plot** shows a trend whereas ideally it should not. The **QQ plot** also deviates a little from the diagonal. This indicates that our regression model is not very suitable for this situation. 
+
+## Conclusion
+This model clearly indicates that both horse power and weight play a role in determining mpg for a specific transmission type. The boxplots in Figure 3 indicate that in manual transmission both hp and wt are lower. From the regression equation we saw that coefficients of hp and wt are significant. Hence we conclude that mpg is affected by hp and wt more than transmission type. It is just that cars with manual transmission also have lower hp and wt leading to higher mpg.
+
+## Appendix
+
+**Figure 1: Boxplot of mpg vs transmission**
+
+```{r boxplot}
+plot(mpg~am,mtcars)
+title(main="Miles per gallon by transmission type",xlab="am", ylab="mpg")
+```
+
+**Figure 2: Pairs Graph**
+
+```{r pairsgraph}
+pairs(mtcars,panel=panel.smooth, main="Mtcars pairs")
+```
+
+**Figure 3: Box Plots for hp, wt against am**
+
+```{r}
+par(mfrow=c(1,2))
+boxplot(wt~am,mtcars)
+boxplot(hp~am,mtcars)
+```
+
+**Figure 4: Residual Plots**
+
+``` {r residuals}
+par(mfrow=c(2,2))
+plot(fit)
+```
